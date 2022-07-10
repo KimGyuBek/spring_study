@@ -1,5 +1,7 @@
 package com.example.testproject.controller;
 
+import com.example.testproject.common.Constant;
+import com.example.testproject.common.exception.TestException;
 import com.example.testproject.data.dto.ProductDto;
 import com.example.testproject.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +61,11 @@ public class ProductController {
     @DeleteMapping(value = "/product/{productId}")
     public ProductDto deleteProduct(@PathVariable String productId) {
         return null;
+    }
+
+    @PostMapping(value = "/product/exception")
+    public void exceptionTest()  throws TestException {
+//        throw new TestException(Constant.ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생했습니다.");
+        throw new TestException(Constant.ExceptionClass.PRODUCT, HttpStatus.FORBIDDEN, "접근이 금지되었습니다.");
     }
 }
