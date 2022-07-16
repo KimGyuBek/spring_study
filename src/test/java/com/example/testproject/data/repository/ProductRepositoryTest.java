@@ -157,17 +157,18 @@ public class ProductRepositoryTest {
 
         List<ProductEntity> foundProducts = productRepository.findByProductNameContainingOrderByProductStockAsc(
             "상품");
-        for(ProductEntity productEntity : foundProducts) {
+        for (ProductEntity productEntity : foundProducts) {
             System.out.println(productEntity);
         }
 
         foundProducts = productRepository.findByProductNameContainingOrderByProductStockDesc("상품");
-        for(ProductEntity productEntity : foundProducts) {
+        for (ProductEntity productEntity : foundProducts) {
             System.out.println(productEntity);
         }
 
-        foundProducts = productRepository.findByProductNameContainingOrderByProductPriceAscProductIdDesc("상품");
-        for(ProductEntity productEntity : foundProducts) {
+        foundProducts = productRepository.findByProductNameContainingOrderByProductPriceAscProductIdDesc(
+            "상품");
+        for (ProductEntity productEntity : foundProducts) {
             System.out.println(productEntity);
         }
 
@@ -184,11 +185,51 @@ public class ProductRepositoryTest {
         }
         System.out.println("====↑↑ Test Data ↑↑====");
 
-        List<ProductEntity> foundProducts = productRepository.findByProductNameContaining("상품", Sort.by(
-            Order.asc("productPrice")));
-        for(ProductEntity productEntity : foundProducts) {
+        List<ProductEntity> foundProducts = productRepository.findByProductNameContaining("상품",
+            Sort.by(
+                Order.asc("productPrice")));
+        for (ProductEntity productEntity : foundProducts) {
             System.out.println(productEntity);
+
         }
+    }
+
+
+//    @Query 사용하기
+
+    @Test
+    void queryTest() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for (ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> fondProduct = productRepository.findByProductBasis();
+        for(ProductEntity productEntity : fondProduct) {
+            System.out.println(productEntity.toString());
+        }
+
+    }
+
+
+    @Test
+    void queryTests2() {
+        List<ProductEntity> foundAll = productRepository.findAll();
+
+        System.out.println("====↓↓ Test Data ↓↓====");
+        for (ProductEntity productEntity : foundAll) {
+            System.out.println(productEntity.toString());
+        }
+        System.out.println("====↑↑ Test Data ↑↑====");
+
+        List<ProductEntity> foundProduct  = productRepository.findTest(1, 1);
+        for (ProductEntity productEntity : foundProduct) {
+            System.out.println(productEntity.toString());
+        }
+
     }
 
 }
