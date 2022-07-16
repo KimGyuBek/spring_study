@@ -1,4 +1,4 @@
-package com.example.testproject.test;
+package com.example.testproject.service.impl.test;
 
 import org.junit.jupiter.api.*;
 
